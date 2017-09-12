@@ -39,4 +39,4 @@ v1.0.1 2017-09-12T11:36:00+02
 
 Copyright (C) 2017 Markus M. Egger (prof79), [https://markusegger.at](https://markusegger.at)
 
-v1.0.1 is Freeware - use/modify at your own risk and leisure.
+v1.0.1 is public domain - use/modify at your own risk and leisure. See `LICENSE.md`.
