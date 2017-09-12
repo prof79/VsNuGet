@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+    <!-- Target to automatically clean and deploy NuGet packages
+         in a .NET Framework/PCL/UWP library project.
+    -->
+    <!-- v1.0.1 2017-09-12T11:11:00+02 -->
+    
+    <Target Name="AfterBuild">
+        <ItemGroup>
+            <NupkgFiles Include="$(ProjectDir)*.nupkg" />
+        </ItemGroup>
+        <Message Text="==== After Build Task ====" />
+        <Message Text="$(MSBuildExtensionsPath)" />
+        <Delete Files="@(NupkgFiles)" />
+        <Exec Command="nuget\nuget.exe update -self"
+              WorkingDirectory="$(ProjectDir)" />
+        <Exec Command="nuget\nuget.exe pack $(TargetName).nuspec"
+              WorkingDirectory="$(ProjectDir)" />
+        <Copy SourceFiles="@(NupkgFiles)"
+              DestinationFolder="$(UserProfile)\OneDrive\Programming\NuGetRepository"
+              SkipUnchangedFiles="true" />
+    </Target>
+
+</Project>

@@ -1,0 +1,23 @@
+﻿<Project>
+
+    <!-- Target to automatically clean and deploy NuGet packages
+         in a .NET Standard project.
+    -->
+    <!-- v1.0.1 2017-09-12T11:10:00+02 -->    
+
+    <ItemGroup>
+        <NupkgFiles Include="$(TargetDir)..\*.nupkg" />
+    </ItemGroup>
+
+    <Target Name="DeleteOldNupkgFiles"
+            BeforeTargets="Build">
+        <Delete Files="@(NupkgFiles)" />
+    </Target>
+
+    <Target Name="CopyPackage"
+            AfterTargets="Pack">
+        <Copy SourceFiles="$(OutputPath)..\$(PackageId).$(PackageVersion).nupkg"
+              DestinationFolder="$(UserProfile)\OneDrive\Programming\NuGetRepository" />
+    </Target>
+
+</Project>
